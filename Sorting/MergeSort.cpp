@@ -1,31 +1,33 @@
 #include<bits/stdc++.h>
-#define vi vector<int>
+
 using namespace std;
-int merge(vector<int>& a, int low, int mid, int high)
+void merge(vector<int>& a, int low, int mid, int high)
 {
     int n1=mid-low+1;
     int n2=high-mid;
-    vi left(n1);
-    vi right(n2);
+    vector<int> left(n1,0);
+    vector<int> right(n2,0);
     for(int i=0;i<n1;i++) left[i]=a[low+i];
-    for(int i=0;i<n2;i++) right[i]=a[n1+i];
-    int i=0,j=0,k=0;
+    for(int i=0;i<n2;i++) right[i]=a[mid+1+i];
+    int i=0,j=0,k=low;
     while(i<n1 && j<n2)
     {
-        if(left[i]<=right[i]){a[k++]=left[i++];}
-        else a[k++]=right[j++];
+        if(left[i]<=right[i]){a[k]=left[i];k++;i++;}
+        else {a[k]=right[j];k++;j++;}
     }
     while(i<n1)
     {
-        a[k++]=left[i++];
+        a[k]=left[i];
+        k++;i++;
     }
     while(j<n2)
     {
-        a[k++]=right[j++];
+        a[k]=right[j];
+        k++;j++;
     }
-    return 0;
+    
 }
-void mergeSort(vector<int>& a,int r, int l)
+void mergeSort(vector<int>& a,int l, int r)
 {
     if(r>l)
     {
@@ -40,13 +42,13 @@ int main()
 {
     int n;
     cin>>n;
-    vi a(n);
+    vector<int> a(n,0);
     for(int i=0;i<n;i++)
     {
         cin>>a[i];
 
     }
-    mergeSort(a,n-1,0);
+    mergeSort(a,0,n-1);
     for(int i=0;i<n;i++)
     {
         cout<<a[i]<<" ";
