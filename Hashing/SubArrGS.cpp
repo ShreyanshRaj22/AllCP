@@ -1,19 +1,19 @@
 #include<bits/stdc++.h>
 using namespace std;
-bool pSum(int a[],int n, int v)
+bool gSum(int a[],int n,int sum)
 {
+    int ps=0;
     unordered_set<int> s;
-    
     for(int i=0;i<n;i++)
     {
-        if(s.count(v-a[i]))
-        {
-            return true;
-        }
-        s.insert(a[i]);
+        ps+=a[i];
+        if(s.count(ps-sum))
+        return true;
+        if(ps==sum) return true;
+        s.insert(ps);
+
     }
     return false;
-
 }
 int main()
 {
@@ -21,9 +21,9 @@ int main()
     cin>>n;
     int a[n];
     for(int i=0;i<n;i++) cin>>a[i];
-    int v;
-    cin>>v;
-    if(pSum(a,n,v)) cout<<"Yes\n";
+    int s;
+    cin>>s;
+    if(gSum(a,n,s)) cout<<"Yes\n";
     else cout<<"No\n";
     return 0;
 }
