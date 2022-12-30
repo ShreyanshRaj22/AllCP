@@ -12,12 +12,14 @@ struct node
         right = NULL;
     }
 };
-int height(node *head)
+int res=0;
+int height(node* head)
 {
     if(head == NULL) return 0;
-    int h1=height(head->left);
-    int h2 = height(head->right);
-    return max(h1,h2)+1;
+    int lh = height(head->left);
+    int rh = height(head->right);
+    res=max(res,lh+rh+1);
+    return 1+max(lh,rh);
 }
 int main()
 {
@@ -26,7 +28,8 @@ int main()
     head->right = new node(30);
     head->left->left = new node(40);
     head->left->right = new node(50);
-    cout<<height(head)<<"\n";
+    height(head);
+    cout<<res<<"\n";
     return 0;
 
 
