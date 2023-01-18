@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int maxSumSubArray(int a[],int n)
+int maxSumSubArray(int a[],)
 {
     int csum=a[0],maxSoFar=a[0];
     for(int i=1;i<n;i++)
